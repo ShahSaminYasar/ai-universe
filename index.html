@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Universe Hub</title>
+    <link rel="shortcut icon" href="./media/images/favicon.png" type="image/x-icon">
+    <!-- DaisyUI CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link CSS Stylesheets -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/custom.css">
+</head>
+<body class="bg-white">
+    <div class="container mx-auto">
+        <header id="header" class="py-5">
+            <h1 class="text-black text-3xl font-bolder text-center">AI Universe Hub</h1>
+        </header>
+
+        <main id="main">
+            <div class="text-center">
+                <button class="p-3 font-bold mb-5 text-sm text-white bg-red-400 rounded-lg">Sort by date</button>
+            </div>
+
+            <!-- Loader -->
+            <div id="loader" class="text-center py-5">
+                <span class="loading loading-spinner text-primary"></span>
+            </div>
+
+            <!-- AI Cards Container -->
+            <div id="ai_cards_container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- AI Card -->
+                <!-- <div class="ai_card p-3 rounded-xl border-2 border-slate-100 flex flex-col gap-4 justify-start">
+                    <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg" alt="" class="w-full rounded-xl">
+                    <h3 class="text-2xl font-semibold">Features</h3>
+                    <ol type="1">
+                        <li>Natural language processing</li>
+                        <li>Contextual understanding</li>
+                        <li>Text generation</li>
+                    </ol>
+                    <hr>
+                    <div class="flex flex-row justify-between align-middle">
+                        <div>
+                            <h2 class="text-black text-2xl font-semibold mb-2">ChatGPT</h2>
+                            <p class="text-neutral-400 text-sm"><i class="fa-regular fa-calendar"></i> <span>11/01/2022</span></p>
+                        </div>
+                        <div class="grid place-content-center">
+                            <a href="#" class="text-red-400 text-lg p-3 rounded-full bg-red-100"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Show All Button -->
+            <div id="show_all_button" class="py-5 text-center hidden">
+                <button class="bg-blue-700 text-white rounded-lg py-2 px-3" onclick="getAllData(true)">See More</button>
+            </div>
+
+            <!-- AI Details Modal -->
+            <dialog id="ai_details_modal" class="modal">
+                <div class="modal-box bg-white w-[98%] max-w-[1000px]">
+                    <form method="dialog">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 bg-red-600 text-white hover:bg-red-200 hover:text-red-700">✕</button>
+                    </form>
+                    <!-- Loader -->
+                    <div id="details_loader" class="text-center py-5">
+                        <span class="loading loading-ring loading-lg"></span>
+                    </div>
+                    <div id="ai_details" class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2 lg:p-4 rounded-xl">
+                        <!-- Left Column -->
+                        <!-- <div class="bg-red-100 border-2 border-red-500 p-5 rounded-xl flex flex-col gap-5">
+                            <p class="text-2xl text-black font-semibold text-left">ChatGPT is a large language model developed by OpenAI that can generate human-like responses in a conversation.</p>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="bg-neutral-100 rounded-xl p-4 text-lg font-semibold text-green-600 text-center grid place-content-center">
+                                    $10/month Basic
+                                </div>
+                                <div class="bg-neutral-100 rounded-xl p-4 text-lg font-semibold text-orange-600 text-center grid place-content-center">
+                                    $50/month Pro
+                                </div>
+                                <div class="bg-neutral-100 rounded-xl p-4 text-lg font-semibold text-red-600 text-center grid place-content-center">
+                                    Contact us for Enterprise
+                                </div>
+                            </div>
+                            <div class="flex flex-row gap-4 justify-between">
+                                <div>
+                                    <h4 class="text-black text-2xl font-semibold text-left mb-3">Features</h4>
+                                    <ul class="text-neutral-900">
+                                        <li>Customizable responses</li>
+                                        <li>Multilingual support</li>
+                                        <li>Seamless integration</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-black text-2xl font-semibold text-left mb-3">Integrations</h4>
+                                    <ul class="text-neutral-900">
+                                        <li>FB Messenger</li>
+                                        <li>Slack</li>
+                                        <li>Telegram</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        Right Column
+                        <di class="bg-white border-2 border-slate-200 p-5 rounded-xl flex flex-col justify-start gap-3">
+                            <div class="ai_details_image_container">
+                                <img src="https://github.githubassets.com/images/modules/site/social-cards/copilot-ga.png" class="rounded-xl" alt="">
+                                <div class="badge badge-secondary">94% accuracy</div>
+                            </div>
+                            <p class="text-xl font-semibold text-black text-center">Hi! How are you doing today?</p>
+                            <p class="text-base text-neutral-900 text-center font-normal">I am doing well, thank you for asking. How can I help you today?</p>
+                        </div> -->
+                    </div>
+                </div>
+            </dialog>
+        </main>
+
+        <footer class="mt-8 border-t-2 border-t-neutral-300 py-7 px-2 text-center">
+            <a href="https://shahsaminyasar.github.io/portfolio" class="text-base text-blue-700">Shah Samin Yasar</a>
+        </footer>
+    </div>
+
+    <!-- Connect Scripts -->
+    <script src="./js/get.js"></script>
+</body>
+</html>

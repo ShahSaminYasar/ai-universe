@@ -1,0 +1,35 @@
+/* .ai_card_image{
+    min-height: fit-content;
+    background: url('https: //www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+
+.ai_details_image_container{
+    position: relative;
+}
+
+.ai_details_image_container .badge{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: tomato;
+    border-radius: 8px;
+    padding: 14px;
+    border: none;
+}
+
+.fade-in{
+    opacity: 1;
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
